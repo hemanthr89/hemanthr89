@@ -1,0 +1,30 @@
+name: Azure Login via OIDC
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write   # Required for OIDC
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production  # 👈 Must match your GitHub Environment name
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: 47d25f3b-4db1-4c3a-ba57-bc83e0a79549
+          tenant-id: 1f713347-a811-409a-9dc9-6c7e8fe9873d
+          subscription-id: 717d348f-d530-4066-9448-8b59443da4fb
+
+
+      - name: Show Azure Info
+        run: az account show
