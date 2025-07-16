@@ -12,7 +12,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production  # 👈 Must match your GitHub Environment name
+    environment: azure  # 👈 Must match your GitHub Environment name
 
     steps:
       - name: Checkout code
